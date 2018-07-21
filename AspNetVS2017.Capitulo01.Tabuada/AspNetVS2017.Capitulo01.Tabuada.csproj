@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{991207AE-8CD3-48E9-9C48-4DD008790036}</ProjectGuid>
+    <ProjectGuid>{E76A3065-FBB4-45DD-9286-79EA3B6AE5A5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AspNetVS2017.Capitulo01.Variaveis</RootNamespace>
-    <AssemblyName>AspNetVS2017.Capitulo01.Variaveis</AssemblyName>
+    <RootNamespace>AspNetVS2017.Capitulo01.Tabuada</RootNamespace>
+    <AssemblyName>AspNetVS2017.Capitulo01.Tabuada</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,17 +45,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="VariaveisForm.cs">
+    <Compile Include="TabuadaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VariaveisForm.Designer.cs">
-      <DependentUpon>VariaveisForm.cs</DependentUpon>
+    <Compile Include="TabuadaForm.Designer.cs">
+      <DependentUpon>TabuadaForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="VariaveisForm.resx">
-      <DependentUpon>VariaveisForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -65,6 +62,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TabuadaForm.resx">
+      <DependentUpon>TabuadaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
