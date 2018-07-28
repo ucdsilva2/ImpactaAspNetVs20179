@@ -12,8 +12,13 @@ namespace Oficina.Dominio
     //Classe por padrão é sempre public
     public class Veiculo
     {
+        //public Veiculo()
+        //{
+        //    Id = Guid.NewGuid();
+        //}
 
-        public int         Id           { get; set; }
+
+        public Guid Id                  { get; set; } = Guid.NewGuid();
         public string      Placa        { get; set; }
         public int         Ano          { get; set; }
         public string      Observacao   { get; set; }
