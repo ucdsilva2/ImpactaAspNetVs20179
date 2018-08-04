@@ -19,16 +19,15 @@ namespace AspNetVS2017.Capitulo01.Troco
 
         private void calcularButton_Click(object sender, EventArgs e)
         {
-            //VARIÁVEIS
-            var valorPago = Convert.ToDecimal(valorPagoTextBox.Text); //FORMA DE CONVERTER COM CONVERT
-            var valorCompra = decimal.Parse(valorCompraTextBox.Text); //FORMA DE CONVERTER COM PARSE
+            var valorPago = Convert.ToDecimal(valorPagoTextBox.Text);
+            var valorCompra = Decimal.Parse(valorCompraTextBox.Text);
+
             var troco = valorPago - valorCompra;
+            //var Troco = 10;
 
-            //MOSTRA O TROCO
-            trocoTextBox.Text = troco.ToString("c"); //FORMA DE CONVERTER PARA STRING
+            trocoTextBox.Text = troco.ToString("c");
 
-            //
-            var moedas1 = (int)(troco/1); //outra forma de converter (cast = moldar)
+            var moedas1 = (int)(troco / 1); //cast
             troco = troco % 1;
 
             var moedas050 = (int)(troco / 0.5m);
@@ -52,8 +51,6 @@ namespace AspNetVS2017.Capitulo01.Troco
             moedasListView.Items[3].Text = moedas010.ToString();
             moedasListView.Items[4].Text = moedas005.ToString();
             moedasListView.Items[5].Text = moedas001.ToString();
-
-
         }
     }
 }

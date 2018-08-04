@@ -1,15 +1,153 @@
-﻿<!DOCTYPE html>
+﻿@using Oficina.WebPages;
+@{
+    var _veiculoAplicacao = new VeiculoAplicacao();
+
+    if (IsPost)
+    {
+        _veiculoAplicacao.Inserir();
+    }
+}
+
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Cadastro de veículos</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> @*link da fonte roboto consegui lá no site do google*@
+
+    <style>
+        body {
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        label {
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        select, input {
+            min-width: 200px;
+            min-height: 24px;
+            margin-bottom: 5px;
+        }
+
+            input[type=submit] {
+                width: 300px;
+            }
+    </style>
 </head>
 <body>
     <h1>Cadastro de veículos</h1>
     <hr/>
-    <form>
+    <form method="post"> @*post ele não envia pela url fica anonimo*@
+
+        <label for="marca">Marca</label>
+        <select name="marca" id="marca" onchange="obterModelos(this.value)">
+            //obter modelos é java script
+
+            //este é o combobox
+            <option value="">Selecione</option>
+
+            @foreach (var marca in _veiculoAplicacao.Marcas)
+            {
+                <option value="@marca.Id" selected="@Convert.ToBoolean(marca.Id.ToString() ==
+                                                       _veiculoAplicacao.MarcaSelecionada)">
+                    @marca.Nome
+                                                </option>
+
+                                                //
+                                            }
+
+        </select>
+        <br />
+
+        <label for="modelo">Modelo</label>
+        <select name="modelo" id="modelo">
+
+            //este é o combobox
+            <option value="">Selecione</option>
+
+            @foreach (var modelo in _veiculoAplicacao.Modelos)
+            {
+                <option value="@modelo.Id">@modelo.Nome</option>
+            }
+
+        </select>
+        <br />
+
+        <label for="placa">Placa</label>
+        <input type="text" name="placa" id="placa" />
+        <br />
+
+        <label for="ano">Ano</label>
+        <input type="text" name="ano" id="ano" />
+        <br />
+
+        <label for="cor">Cor</label>
+        <select name="cor" id="cor">
+
+            //este é o combobox
+            <option value="">Selecione</option>
+
+            @foreach (var cor in _veiculoAplicacao.Cores)
+            {
+                <option value="@cor.Id">@cor.Nome</option>
+            }
+
+        </select>
+        <br />
+
+        <label for="combustivel">Combustível</label>
+        <select name="combustivel" id="combustivel">
+
+            //este é o combobox
+            <option value="">Selecione</option>
+
+            @foreach (var combustivel in _veiculoAplicacao.Combustiveis)
+            {
+                <option value="@((int)combustivel)">@combustivel</option>
+            }
+
+        </select>
+        <br />
+
+        <label for="cambio">Cambio</label>
+        <select name="cambio" id="cambio">
+
+            //este é o combobox
+            <option value="">Selecione</option>
+
+            @foreach (var cambio in _veiculoAplicacao.Cambios)
+            {
+                <option value="@((int)cambio)">@cambio</option>
+            }
+
+        </select>
+        <br />
+
+        <label for="observacao">Observação</label>
+        <br />
+        <textarea name="observacao" id="observacao" rows="10" cols="40"></textarea>
+        <br />
+
+        @*submit é um botão que envia o formulário para o servidor*@
+        <input type="submit" value="Gravar" />
 
     </form>
+
+    @*//por padrão o java script é ultima coisa do corpo*@
+    <script type="text/javascript">
+
+        function obterModelos(marcaId) {
+
+            const nomePagina = document.location.pathname; //guarda o endereço da página
+            document.location.href = nomePagina + "?marcaId=" + marcaId; //troca a url do navegados e dá um reload na página indeira, interrogação é o começo da informação
+
+        }
+
+    </script>
+
 </body>
 </html>

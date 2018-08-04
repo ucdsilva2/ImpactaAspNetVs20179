@@ -16,7 +16,7 @@ namespace Oficina.Repositorios.SistemaDeArquivos.Tests
         public void InserirTest()
         {
             //var repositorio = new VeiculoRepositorio();
-            var veiculo = new Veiculo();
+            var veiculo = new VeiculoPasseio();
 
             veiculo.Ano = 2014;
             veiculo.Cambio = Cambio.Manual;
@@ -26,6 +26,7 @@ namespace Oficina.Repositorios.SistemaDeArquivos.Tests
             veiculo.Modelo = new ModeloRepositorio().Selecionar(3);
             veiculo.Observacao = "Oberservação";
             veiculo.Placa = "ABC1234";
+            veiculo.Carroceria = TipoCarroceria.Hatch;
 
             new VeiculoRepositorio().Inserir(veiculo);
 

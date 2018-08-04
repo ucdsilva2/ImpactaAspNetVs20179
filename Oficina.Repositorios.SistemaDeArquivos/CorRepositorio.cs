@@ -8,8 +8,11 @@ namespace Oficina.Repositorios.SistemaDeArquivos
 {
     public class CorRepositorio
     {
-        private string _caminhoArquivo = ConfigurationManager.AppSettings["caminhoArquivoCor"];
+        private string _caminhoArquivo = Path.Combine(
+                                            AppDomain.CurrentDomain.BaseDirectory,
+                                            ConfigurationManager.AppSettings["caminhoArquivoCor"]);
 
+        //ToDo: OO - polimorfismo por sobrecarga. (2 métodos diferente com o mesmo nome)
         public List<Cor> Selecionar()
         {
             var cores = new List<Cor>();

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B0E9FE0-70F8-4B3C-AB82-91303A85E2AD}</ProjectGuid>
+    <ProjectGuid>{7A27740B-1D06-4E7F-BBA0-09F9688E08C6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>AspNetVS2017.Capitulo01.Troco</RootNamespace>
     <AssemblyName>AspNetVS2017.Capitulo01.Troco</AssemblyName>

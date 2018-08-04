@@ -89,6 +89,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dados\Cor.txt" />
+    <Content Include="Dados\Marca.txt" />
+    <Content Include="Dados\Modelo.xml" />
+    <Content Include="Dados\Veiculo.xml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
