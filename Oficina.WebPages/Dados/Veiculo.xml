@@ -40,4 +40,46 @@
     <Combustivel>Alcool</Combustivel>
     <Cambio>Manual</Cambio>
   </Veiculo>
+  <VeiculoPasseio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Id>755f2bf5-db2d-4331-8b06-a863c9c80f38</Id>
+    <Placa>DRFDERD</Placa>
+    <Ano>2000</Ano>
+    <Observacao>sssasaa</Observacao>
+    <Modelo>
+      <Id>3</Id>
+      <Nome>Focus</Nome>
+      <Marca>
+        <Id>2</Id>
+        <Nome>Ford</Nome>
+      </Marca>
+    </Modelo>
+    <Cor>
+      <Id>1</Id>
+      <Nome>Preto</Nome>
+    </Cor>
+    <Combustivel>Flex</Combustivel>
+    <Cambio>Automatico</Cambio>
+    <Carroceria>Hatch</Carroceria>
+  </VeiculoPasseio>
+  <VeiculoPasseio xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Id>fff74530-149e-431c-a9b0-ee2dd4074584</Id>
+    <Placa>ASDSFSG</Placa>
+    <Ano>1987</Ano>
+    <Observacao>sdfgsdfgsdfg</Observacao>
+    <Modelo>
+      <Id>3</Id>
+      <Nome>Focus</Nome>
+      <Marca>
+        <Id>2</Id>
+        <Nome>Ford</Nome>
+      </Marca>
+    </Modelo>
+    <Cor>
+      <Id>3</Id>
+      <Nome>Azul</Nome>
+    </Cor>
+    <Combustivel>Diesel</Combustivel>
+    <Cambio>Automatizado</Cambio>
+    <Carroceria>Hatch</Carroceria>
+  </VeiculoPasseio>
 </veiculos>

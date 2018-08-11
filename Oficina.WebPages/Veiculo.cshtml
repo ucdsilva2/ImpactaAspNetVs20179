@@ -1,11 +1,6 @@
 ﻿@using Oficina.WebPages;
 @{
     var _veiculoAplicacao = new VeiculoAplicacao();
-
-    if (IsPost)
-    {
-        _veiculoAplicacao.Inserir();
-    }
 }
 
 <!DOCTYPE html>
@@ -36,12 +31,38 @@
             input[type=submit] {
                 width: 300px;
             }
+
+        #mensagemErro {
+            height: 40px;
+            background-color: #dc3545;
+            margin-bottom: 10px;
+            color: white;
+            text-align: center
+        }
+
     </style>
 </head>
-<body>
+<body onload="exibirMensagem()">
     <h1>Cadastro de veículos</h1>
-    <hr/>
-    <form method="post"> @*post ele não envia pela url fica anonimo*@
+    <hr />
+
+    @{ //Bloco que chama o botão de gravar
+        if (IsPost)
+        {
+            try
+            {
+                _veiculoAplicacao.Inserir();
+                Response.Redirect("Veiculo?mensagem=Veiculo gravado com sucesso!");
+            }
+            catch
+            {
+                <div id="mensagemErro">@HttpContext.Current.Items["MensagemErro"]</div>
+            }
+        }
+    }
+
+    <form method="post">
+        @*post ele não envia pela url fica anonimo*@
 
         <label for="marca">Marca</label>
         <select name="marca" id="marca" onchange="obterModelos(this.value)">
@@ -52,13 +73,12 @@
 
             @foreach (var marca in _veiculoAplicacao.Marcas)
             {
-                <option value="@marca.Id" selected="@Convert.ToBoolean(marca.Id.ToString() ==
-                                                       _veiculoAplicacao.MarcaSelecionada)">
+                <option value="@marca.Id" selected="@Convert.ToBoolean(marca.Id.ToString() == _veiculoAplicacao.MarcaSelecionada)">
                     @marca.Nome
-                                                </option>
+                </option>
 
-                                                //
-                                            }
+                //
+            }
 
         </select>
         <br />
@@ -78,11 +98,11 @@
         <br />
 
         <label for="placa">Placa</label>
-        <input type="text" name="placa" id="placa" />
+        <input type="text" name="placa" id="placa" value="@Request.Form["placa"]"/>
         <br />
 
         <label for="ano">Ano</label>
-        <input type="text" name="ano" id="ano" />
+        <input type="text" name="ano" id="ano" value="@Request.Form["ano"]"/>
         <br />
 
         <label for="cor">Cor</label>
@@ -93,7 +113,7 @@
 
             @foreach (var cor in _veiculoAplicacao.Cores)
             {
-                <option value="@cor.Id">@cor.Nome</option>
+                <option value="@cor.Id" selected="@Convert.ToBoolean(cor.Id.ToString() == Request.Form["cor"])">@cor.Nome</option>
             }
 
         </select>
@@ -137,6 +157,7 @@
 
     </form>
 
+
     @*//por padrão o java script é ultima coisa do corpo*@
     <script type="text/javascript">
 
@@ -144,6 +165,17 @@
 
             const nomePagina = document.location.pathname; //guarda o endereço da página
             document.location.href = nomePagina + "?marcaId=" + marcaId; //troca a url do navegados e dá um reload na página indeira, interrogação é o começo da informação
+
+        }
+
+        function exibirMensagem() {
+            const params = (new URL(document.location)).searchParams;
+            const mensagem = params.get("mensagem");
+
+            if (mensagem) {
+                alert(mensagem); //mostra poupup
+                document.location.href = "Veiculo"; //volta pra pagina original
+            }
 
         }
 

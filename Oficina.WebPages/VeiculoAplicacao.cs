@@ -54,15 +54,13 @@ namespace Oficina.WebPages
                 var veiculo = new VeiculoPasseio();
                 var formulario = HttpContext.Current.Request.Form;
 
-                veiculo.Observacao = formulario["observacao"];
-                veiculo.Placa = formulario["placa"];
                 veiculo.Ano = Convert.ToInt32(formulario["ano"]);
-
+                veiculo.Cambio = (Cambio)Convert.ToInt32(formulario["cambio"]);
+                veiculo.Combustivel = (Combustivel)Convert.ToInt32(formulario["combustivel"]);
                 veiculo.Cor = _corRepositorio.Selecionar(Convert.ToInt32(formulario["cor"]));
                 veiculo.Modelo = _modeloRepositorio.Selecionar(Convert.ToInt32(formulario["modelo"]));
-
-                veiculo.Combustivel = (Combustivel)Convert.ToInt32(formulario["combustivel"]);
-                veiculo.Cambio = (Cambio)Convert.ToInt32(formulario["cambio"]);
+                veiculo.Observacao = formulario["observacao"];
+                veiculo.Placa = formulario["placa"];
                 veiculo.Carroceria = TipoCarroceria.Hatch;
 
                 _veiculoRepositorio.Inserir(veiculo);
@@ -70,19 +68,32 @@ namespace Oficina.WebPages
             catch (FileNotFoundException ex)
             {
                 HttpContext.Current.Items.Add("MensagemErro", $"Arquivo {ex.FileName} não econtrado.");
+                throw; //propaga o erro pra instancias superiores
             }
             catch (UnauthorizedAccessException)
             {
                 HttpContext.Current.Items.Add("MensagemErro", "Arquivo sem permissão de gravação.");
+                throw; //propaga o erro pra instancias superiores
             }
             catch (DirectoryNotFoundException)
             {
                 HttpContext.Current.Items.Add("MensagemErro", "Caminho não encontrado.");
+                throw; //propaga o erro pra instancias superiores
             }
-            catch (Exception)
+            catch (Exception excecao)
             {
                 HttpContext.Current.Items.Add("MensagemErro", "Oooops! Ocorreu um erro.");
-                //throw; o erro é lançado na frente
+                throw; //propaga o erro pra instancias superiores
+                
+                
+                //throw excecao; forma de omitir os thows anteriores
+                //(fazer ainda) logar o objeto excecao no banco de dados
+                //log4net
+            }
+            finally
+            {
+                //é executado sempre independente de sucesso ou erro
+                //é executo mesmo se tenha um return.
             }
         }
     }
